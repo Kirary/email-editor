@@ -85,7 +85,6 @@ function EmailsEditor(atrs) {
             elementContent.className = "email__content";
 
             const deleteButton = document.createElement("span");
-            // deleteButton.textContent = "🞩";
             deleteButton.className = "email__delete-button";
             deleteButton.onclick = (key => {
                 return event => {
@@ -102,15 +101,29 @@ function EmailsEditor(atrs) {
             });
             emailsContainer.insertBefore(elementContainer, placeholder);
         });
-        isChanged && changeList();
+        isChanged && dispatchChangeListEvent();
     };
 
     const deleteItem = key => {
         emailsContainer.removeChild(items.get(key).element);
         const isChange = items.get(key).isValid;
         items.delete(key);
-        isChange && changeList();
+        isChange && dispatchChangeListEvent();
     };
+
+    const deleteAllItems = () => {
+        let isChange = false;
+
+        if (items.size) {
+            for(let key of items.keys()) {
+                emailsContainer.removeChild(items.get(key).element);
+                isChange = items.get(key).isValid;
+                items.delete(key);
+            }
+        }
+
+        isChange && dispatchChangeListEvent();
+    }
 
     const emailValidator = email => {
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -141,6 +154,7 @@ function EmailsEditor(atrs) {
     };
 
     this.setEmails = emailList => {
+        deleteAllItems();
         emailList.forEach(item => {
             addItems(item);
         });
@@ -154,7 +168,7 @@ function EmailsEditor(atrs) {
         return list;
     };
 
-    const changeList = () => {
+    const dispatchChangeListEvent = () => {
         const widgetEvent = new CustomEvent("changeList", {
             bubbles: true,
             detail: this.getEmailList()
