@@ -4,8 +4,17 @@
 
 `const emailEditor = new EmailsEditor(parameters)`
 
-\Parameters is object with next properties:
-- container - Parent container for email editor (DOM Node)
-- name - Board name (string)
-- inputPlaceholder - placeholder for input container (string)
-- showButtonsPanel - Show buttons panel with additional buttons for test purpose (boolean)
+Parameters is object with next properties:
+- container - Parent container for email editor (DOM Node).
+- name - Board name (string).
+- inputPlaceholder - placeholder for input container (string).
+- showButtonsPanel - Show buttons panel with additional buttons for test purpose (boolean).
+
+## EmailsEditor interface
+    setEmails(emailList)
+Get emailList as array of strings.
+
+    getEmailList()
+Return array of valid emails (string).
+
+
