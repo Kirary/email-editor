@@ -15,6 +15,8 @@ Parameters is object with next properties:
 Get emailList as array of strings.
 
     getEmailList()
-Return array of valid emails (string).
+Returns Array of valid emails (string).
 
+## Event for parent container
+"changeList" event return `event.detail` as Array of valid emails(string).
 
