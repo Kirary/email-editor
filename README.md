@@ -1,4 +1,6 @@
 # Email-editor
+`email-editor.js` - embed for script
+`email-editor.css` - embed for styling
 
 ## How to use
 
