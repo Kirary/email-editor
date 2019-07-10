@@ -11,7 +11,7 @@ Parameters is object with next properties:
 - showButtonsPanel - Show buttons panel with additional buttons for test purpose (boolean).
 
 ## EmailsEditor interface
-`setEmails(emailList)` - get emailList as array of strings.
+`setEmails(emailList)` - take `emailList` as Array of strings.
 
 `getEmailList()` - returns Array of valid emails (string).
 
