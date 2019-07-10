@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+}
+.main-container {
+    padding: 30px 40px;
+    background-color: rgba(5, 0, 56, 0.04);
+    font-family: "Open Sans", sans-serif;
+}
+.main-container__boardName {
+    font-weight: 700;
+}
+.main-container__header {
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 33px;
+}
+.emails-container {
+    border-top: 1px solid #c0c0c0;
+    min-width: 320px;
+    min-height: 85px;
+    max-height: 115px;
+    background: #fff;
+    font-size: 14px;
+    padding: 7px 8px;
+    overflow: auto;
+}
+.emails-container__input {
+    font-size: inherit;
+    border-width: 0;
+    outline: none;
+    padding: 2px 9px;
+    font-family: "Open Sans", sans-serif;
+}
+.emails-container__input::-ms-clear {
+    display: none;
+}
+.emails-container__placeholder {
+    padding: 2px 9px;
+    color: #aaa;
+}
+.invisible {
+    display: none;
+}
+.email {
+    display: inline-flex;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    padding: 2px 9px;
+    background: #d4e4ff;
+    border-radius: 12px;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0);
+}
+.email--wrong {
+    background: none;
+    border-bottom: 1px dashed #d14836;
+    border-radius: 0;
+}
+.email__content {
+    max-width: 250px;
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.email__delete-button {
+    margin-left: 9px;
+    cursor: pointer;
+    font-size: 19px;
+    display: inline-block;
+    height: 10px;
+    line-height: 1;
+}
+.email__delete-button:before {
+    content: "\D7";
+}
+.email__delete-button:hover {
+    color: #e00;
+}
+.buttons-container {
+    padding: 30px 40px;
+}
+.main-button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #69f;
+    color: #fff;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    padding: 7px 17px 10px 16px;
+    margin-right: 20px;
+    border-radius: 4px;
+}

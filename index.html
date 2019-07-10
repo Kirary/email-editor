@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Email editor test work</title>
+        <meta name="description" content="Email editor" />
+        <meta name="author" content="Kirary" />
+        <link rel="stylesheet" href="../email-editor.css" />
+    </head>
+
+    <body>
+        <div id="email-editor"></div>
+
+        <script src="../email-editor.js"></script>
+        <script>
+            const container = document.querySelector("#email-editor");
+            container.addEventListener("changeList", event => {
+                console.log("test event listeners", event.detail);
+            });
+
+            const options = {
+                name: "Board name",
+                inputPlaceholder: "add more people...",
+                showButtonsPanel: true,
+            };
+
+            const emailEditorParameters = Object.assign(
+                { container: container },
+                options
+            ); // For EDGE support
+
+            const emailEditor = new EmailsEditor(emailEditorParameters);
+            // Test setEmails function
+            emailEditor.setEmails(["sidorov@gmail.com"]);
+
+            // Test getEmailList function
+            console.log("test getEmailList: ", emailEditor.getEmailList());
+        </script>
+    </body>
+</html>
