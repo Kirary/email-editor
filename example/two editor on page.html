@@ -5,11 +5,27 @@
         <title>Email editor test work</title>
         <meta name="description" content="Email editor" />
         <meta name="author" content="Kirary" />
+        <link rel="stylesheet" href="./exampleStyle.css" />
         <link rel="stylesheet" href="../email-editor.css" />
     </head>
 
     <body>
-        <div id="email-editor"></div>
+        <div class="main-container">
+            <h2 class="main-container__header">
+                Share <b class="main-container__boardName">Board name</b> with
+                other
+            </h2>
+            <div id="email-editor"></div>
+        </div>
+        <div class="buttons-container">
+            <button class="main-button" onclick="addRandomEmail()">
+                Add email
+            </button>
+            <button class="main-button" onclick="getEmailsCount()">
+                Get email count
+            </button>
+        </div>
+
         <div id="email-editor2"></div>
 
         <script src="../email-editor.js"></script>
@@ -20,9 +36,7 @@
             });
 
             const options = {
-                name: "Board name",
-                inputPlaceholder: "add more people...",
-                showButtonsPanel: true,
+                inputPlaceholder: "add more people..."
             };
 
             const emailEditorParameters = Object.assign(
@@ -34,8 +48,24 @@
             // Test setEmails function
             emailEditor.setEmails(["sidorov@gmail.com"]);
 
-            // Test getEmailList function
-            console.log("test getEmailList: ", emailEditor.getEmailList());
+            const getEmailsCount = () => {
+                alert(emailEditor.getEmailList().length);
+            };
+
+            const addRandomEmail = () => {
+                const numberInName = Math.round(Math.random() * 10) + 3;
+                const numberInDomain = Math.round(Math.random() * 6) + 3;
+                const randomEmail =
+                    Math.random()
+                        .toString(36)
+                        .substring(2, numberInName) +
+                    "@" +
+                    Math.random()
+                        .toString(36)
+                        .substring(2, numberInDomain) +
+                    ".com";
+                emailEditor.addEmail(randomEmail);
+            };
 
             const container2 = document.querySelector("#email-editor2");
             container2.addEventListener("changeList", event => {
@@ -43,9 +73,7 @@
             });
 
             const options2 = {
-                name: "Board name2",
-                inputPlaceholder: "invite more people...",
-                showButtonsPanel: true,
+                inputPlaceholder: "invite more people..."
             };
 
             const emailEditorParameters2 = Object.assign(
@@ -56,8 +84,6 @@
             const emailEditor2 = new EmailsEditor(emailEditorParameters2);
             emailEditor2.setEmails(["ivanov@gmail.com"]);
             console.log("test getEmailList: ", emailEditor2.getEmailList());
-
-
         </script>
     </body>
 </html>

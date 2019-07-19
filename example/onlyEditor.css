@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    height: 100vh;
+    padding: 30px 45px;
+    box-sizing: border-box;
+    background: grey;
+}
+#email-editor {
+    box-sizing: border-box;
+    height: 100%;
+}

@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.main-container {
+    padding: 30px 40px;
+    background-color: rgba(5, 0, 56, 0.04);
+    font-family: "Open Sans", sans-serif;
+}
+.main-container__boardName {
+    font-weight: 700;
+}
+.main-container__header {
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 33px;
+}
+.buttons-container {
+    padding: 30px 40px;
+}
+.main-button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #69f;
+    color: #fff;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    padding: 7px 17px 10px 16px;
+    margin-right: 20px;
+    border-radius: 4px;
+}
+#email-editor {
+    max-height: 115px;
+}
+#email-editor2 {
+    margin: 30px 60px;
+    max-height: 100px;
+    border: 3px solid #69f;
+}

@@ -1,19 +1,7 @@
 function EmailsEditor(atrs) {
     const items = new Map();
 
-    const mainContainer = document.createElement("div");
-    mainContainer.className = "main-container";
-
-    const boardName = document.createElement("b");
-    boardName.className = "main-container__boardName";
-    boardName.innerHTML = atrs.name;
-
-    const header = document.createElement("h2");
-    header.className = "main-container__header";
-    header.append("Share ", boardName, " with other");
-
-    const emailsContainer = document.createElement("div");
-    emailsContainer.className = "emails-container";
+    atrs.container.className += " emails-container";
 
     const placeholder = document.createElement("span");
     placeholder.innerHTML = atrs.inputPlaceholder;
@@ -52,12 +40,10 @@ function EmailsEditor(atrs) {
         }, 0);
     };
 
-    emailsContainer.append(placeholder, input);
-    emailsContainer.onclick = () => {
+    atrs.container.append(placeholder, input);
+    atrs.container.onclick = () => {
         input.focus();
     };
-
-    mainContainer.append(header, emailsContainer);
 
     const addItems = emails => {
         const emailList = emails
@@ -99,13 +85,13 @@ function EmailsEditor(atrs) {
                 isValid,
                 element: elementContainer
             });
-            emailsContainer.insertBefore(elementContainer, placeholder);
+            atrs.container.insertBefore(elementContainer, placeholder);
         });
         isChanged && dispatchChangeListEvent();
     };
 
     const deleteItem = key => {
-        emailsContainer.removeChild(items.get(key).element);
+        atrs.container.removeChild(items.get(key).element);
         const isChange = items.get(key).isValid;
         items.delete(key);
         isChange && dispatchChangeListEvent();
@@ -115,42 +101,23 @@ function EmailsEditor(atrs) {
         let isChange = false;
 
         if (items.size) {
-            for(let key of items.keys()) {
-                emailsContainer.removeChild(items.get(key).element);
+            for (let key of items.keys()) {
+                atrs.container.removeChild(items.get(key).element);
                 isChange = items.get(key).isValid;
                 items.delete(key);
             }
         }
 
         isChange && dispatchChangeListEvent();
-    }
+    };
 
     const emailValidator = email => {
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return regex.test(String(email).toLowerCase());
     };
 
-    const addRandomEmail = () => {
-        const numberInName = Math.round(Math.random() * 10) + 3;
-        const numberInDomain = Math.round(Math.random() * 6) + 3;
-        const randomEmail =
-            Math.random()
-                .toString(36)
-                .substring(2, numberInName) +
-            "@" +
-            Math.random()
-                .toString(36)
-                .substring(2, numberInDomain) +
-            ".com";
-        addItems(randomEmail);
-    };
-
-    const getEmailCount = () => {
-        let count = 0;
-        for (let item of items.values()) {
-            item.isValid && count++;
-        }
-        alert(count);
+    this.addEmail = email => {
+        addItems(email);
     };
 
     this.setEmails = emailList => {
@@ -175,23 +142,4 @@ function EmailsEditor(atrs) {
         });
         atrs.container.dispatchEvent(widgetEvent);
     };
-
-    const addEmailButton = document.createElement("button");
-    addEmailButton.className = "main-button";
-    addEmailButton.textContent = "Add email";
-    addEmailButton.onclick = addRandomEmail;
-
-    const getCountButton = document.createElement("button");
-    getCountButton.className = "main-button";
-    getCountButton.textContent = "Get email count";
-    getCountButton.onclick = getEmailCount;
-
-    let buttonsContainer = "";
-    if (atrs.showButtonsPanel) {
-        buttonsContainer = document.createElement("div");
-        buttonsContainer.className = "buttons-container";
-        buttonsContainer.append(addEmailButton, getCountButton);
-    }
-
-    atrs.container.append(mainContainer, buttonsContainer);
 }
